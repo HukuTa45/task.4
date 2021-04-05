@@ -8,7 +8,6 @@ namespace task4
     {
         private TreeElement _firsTreeElement;
         
-
         public Tree()
         { 
             firstElement = true;
