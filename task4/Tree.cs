@@ -7,9 +7,9 @@ namespace task4
     public class Tree
     {
         private TreeElement _firsTreeElement;
-        
+
         public Tree()
-        { 
+        {
             firstElement = true;
         }
 
@@ -17,65 +17,69 @@ namespace task4
 
         public void AddTreeElement(int value)
         {
-            if (!CheckValue(_firsTreeElement, value))
-            {
-                if (firstElement)
-                {
-                    _firsTreeElement = new TreeElement
-                    {
-                        Value = value,
-                        Count = 1,
-                        ParentElement = null,
-                    };
-                    firstElement = false;
-                }
 
-                var newElement = new TreeElement
+            if (firstElement)
+            {
+                _firsTreeElement = new TreeElement
                 {
                     Value = value,
                     Count = 1,
-                    ParentElement = AddValue(_firsTreeElement, value).ParentElement
+                    ParentElement = null,
                 };
+                firstElement = false;
             }
+            else AddValue(_firsTreeElement, value);
+
 
         }
 
-        public bool CheckValue(TreeElement currentElement,int value)
+        public void AddValue(TreeElement current, int value)
         {
-            if (currentElement.Value == value)
+            if (current.Value == value)
             {
-               currentElement.Count++;
-               return true;
-            } 
-            
-            if (currentElement != null)
-            {
-                CheckValue(currentElement.LeftElement,value);
-                CheckValue(currentElement.RightElement,value);
+                current.Count++;
+                return;
             }
 
-            return false;
-
-        }
-
-        public TreeElement AddValue(TreeElement current,int value)
-        {
-            
-            if (current != null)
+            if (current.Value > value)
             {
-                if (current.Value > value)
-                    AddValue(current = current.RightElement, value);
+                if (current.RightElement != null)
+                {
+                    AddValue(current.RightElement, value);
+                }
                 else
-                    AddValue(current = current.LeftElement, value);
+                {
+                    current.RightElement = new TreeElement
+                    {
+                        Value = value,
+                        Count = 1,
+                        ParentElement = current
+                    };
+                }
+            }
+            else
+            {
+                if (current.LeftElement != null)
+                {
+                    AddValue(current.RightElement, value);
+                }
+                else
+                {
+                    current.LeftElement = new TreeElement
+                    {
+                        Value = value,
+                        Count = 1,
+                        ParentElement = current
+                    };
+                }
             }
 
-            return current;
-
+            return;
         }
-
-        public int GetCount(TreeElement element)
-        {
-            return element.Count;
-        }
+        public string FindElement(int value)
+		{
+            
+		}
     }
 }
+
