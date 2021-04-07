@@ -7,7 +7,7 @@ namespace task4
     public class Tree
     {
         private TreeElement _firsTreeElement;
-
+        
         public Tree()
         {
             firstElement = true;
@@ -75,32 +75,34 @@ namespace task4
 
            
         }
-        public string FindElement(int value)
+        public bool FindElement(int value, out int outCount)
 		{
-            return SearchElement(_firsTreeElement ,value);
+            return SearchElement(_firsTreeElement ,value, out outCount);
 		}
-        public string SearchElement(TreeElement current,int value)
+        public bool SearchElement(TreeElement current,int value, out int outCount)
         {
             if (current.Value == value)
             {
-                return current.Count.ToString();
+                outCount = current.Count;
+                return true;
             }
 
             if (value > current.Value)
             {
                 if (current.RightElement != null)
-                {
-                   return SearchElement(current.RightElement, value);
+                {                  
+                    return SearchElement(current.RightElement, value,out outCount);
                 }             
             }
             else
             {
                 if (current.LeftElement != null)
-                {
-                   return SearchElement(current.LeftElement, value);
+                {                    
+                    return SearchElement(current.LeftElement, value,out outCount);
                 }
             }
-           return "Элемент не найден!";
+            outCount = 0;
+           return false;
         }
     }
 }
