@@ -13,10 +13,15 @@ namespace task4
 			{
 				tree.AddTreeElement(array[index]);
 			}
-			for (int index = 0; array.Length > index; index++)
-			{
-				Console.WriteLine($"Элемент {array[index]} Найден? {tree.FindElement(array[index],out count)} Количество - {count}");
-			}		
-		}
+
+            for (int index = 0; array.Length > index; index++)
+            {
+                Console.WriteLine($"Элемент {array[index]} Найден? {tree.FindElement(array[index], out count)} Количество - {count}");
+            }
+            Console.WriteLine("------------------");
+            Console.WriteLine($"Элемент {10} Найден? {tree.FindElement(10, out count)} Количество - {count}");
+            Console.WriteLine($"Элемент {15} Найден? {tree.FindElement(15, out count)} Количество - {count}");
+            Console.WriteLine($"Элемент {20} Найден? {tree.FindElement(20, out count)} Количество - {count}");
+        }
 	}
 }
