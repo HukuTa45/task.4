@@ -15,10 +15,8 @@ namespace task4
 			}
 			for (int index = 0; array.Length > index; index++)
 			{
-				Console.WriteLine("Элемент "+array[index]+" Найден? "+tree.FindElement(array[index],out count)+" Количество - "+count);
-			}
-			
-
+				Console.WriteLine($"Элемент {array[index]} Найден? {tree.FindElement(array[index],out count)} Количество - {count}");
+			}		
 		}
 	}
 }
