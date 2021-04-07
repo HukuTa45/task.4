@@ -7,18 +7,19 @@ namespace task4
     public class Tree
     {
         private TreeElement _firsTreeElement;
-        
+        private bool _isFirstElement;
+
         public Tree()
         {
-            firstElement = true;
+            _isFirstElement = true;
         }
 
-        public bool firstElement { get; set; }
+        
 
         public void AddTreeElement(int value)
         {
 
-            if (firstElement)
+            if (_isFirstElement)
             {
                 _firsTreeElement = new TreeElement
                 {
@@ -26,7 +27,7 @@ namespace task4
                     Count = 1,
                     ParentElement = null,
                 };
-                firstElement = false;
+                _isFirstElement = false;
             }
             else AddValue(_firsTreeElement, value);
 
