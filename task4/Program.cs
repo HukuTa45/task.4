@@ -7,12 +7,16 @@ namespace task4
         static void Main(string[] args)
         {
 			Tree tree = new Tree();
-			var array = new int[] { 1, 1, 1, 1, 1, 2, 4, 5, 6, 7, 4 };
+			var array = new int[] { 1, 1, 2, 3, 1, 2, 4, 5, 6, 7, 4 };
 			for (int index = 0; array.Length > index; index++)
 			{
 				tree.AddTreeElement(array[index]);
 			}
-
+			for (int index = 0; array.Length > index; index++)
+			{
+				Console.WriteLine("Элемент "+array[index]+" Количество - "+tree.FindElement(array[index]));
+			}
+			
 
 		}
 	}

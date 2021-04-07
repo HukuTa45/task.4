@@ -30,7 +30,6 @@ namespace task4
             }
             else AddValue(_firsTreeElement, value);
 
-
         }
 
         public void AddValue(TreeElement current, int value)
@@ -41,7 +40,7 @@ namespace task4
                 return;
             }
 
-            if (current.Value > value)
+            if (value> current.Value)
             {
                 if (current.RightElement != null)
                 {
@@ -61,7 +60,7 @@ namespace task4
             {
                 if (current.LeftElement != null)
                 {
-                    AddValue(current.RightElement, value);
+                    AddValue(current.LeftElement, value);
                 }
                 else
                 {
@@ -74,12 +73,35 @@ namespace task4
                 }
             }
 
-            return;
+           
         }
         public string FindElement(int value)
 		{
-            
+            return SearchElement(_firsTreeElement ,value);
 		}
+        public string SearchElement(TreeElement current,int value)
+        {
+            if (current.Value == value)
+            {
+                return current.Count.ToString();
+            }
+
+            if (value > current.Value)
+            {
+                if (current.RightElement != null)
+                {
+                   return SearchElement(current.RightElement, value);
+                }             
+            }
+            else
+            {
+                if (current.LeftElement != null)
+                {
+                   return SearchElement(current.LeftElement, value);
+                }
+            }
+           return "Элемент не найден!";
+        }
     }
 }
 
