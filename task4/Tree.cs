@@ -1,39 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace task4
+﻿namespace task4
 {
     public class Tree
     {
         private TreeElement _firsTreeElement;
-        private bool _isFirstElement;
-
-        public Tree()
-        {
-            _isFirstElement = true;
-        }
-
-        
 
         public void AddTreeElement(int value)
         {
-
-            if (_isFirstElement)
-            {
+            if (_firsTreeElement == null)
                 _firsTreeElement = new TreeElement
                 {
                     Value = value,
-                    Count = 1,
-                    ParentElement = null,
+                    Count = 1
                 };
-                _isFirstElement = false;
-            }
-            else AddValue(_firsTreeElement, value);
-
+            else _AddTreeElement(_firsTreeElement, value);
         }
 
-        public void AddValue(TreeElement current, int value)
+        private void _AddTreeElement(TreeElement current, int value)
         {
             if (current.Value == value)
             {
@@ -41,46 +23,36 @@ namespace task4
                 return;
             }
 
-            if (value> current.Value)
+            if (value > current.Value)
             {
                 if (current.RightElement != null)
-                {
-                    AddValue(current.RightElement, value);
-                }
+                    _AddTreeElement(current.RightElement, value);
                 else
-                {
                     current.RightElement = new TreeElement
                     {
                         Value = value,
-                        Count = 1,
-                        ParentElement = current
+                        Count = 1
                     };
-                }
             }
             else
             {
                 if (current.LeftElement != null)
-                {
-                    AddValue(current.LeftElement, value);
-                }
+                    _AddTreeElement(current.LeftElement, value);
                 else
-                {
                     current.LeftElement = new TreeElement
                     {
                         Value = value,
-                        Count = 1,
-                        ParentElement = current
+                        Count = 1
                     };
-                }
             }
-
-           
         }
-        public bool FindElement(int value, out int outCount)
-		{
-            return SearchElement(_firsTreeElement ,value, out outCount);
-		}
-        public bool SearchElement(TreeElement current,int value, out int outCount)
+
+        public bool FindElement(int value, out int outCount) 
+            => _FindElement(_firsTreeElement, value, out outCount);
+        
+
+
+        private bool _FindElement(TreeElement current, int value, out int outCount)
         {
             if (current.Value == value)
             {
@@ -90,21 +62,15 @@ namespace task4
 
             if (value > current.Value)
             {
-                if (current.RightElement != null)
-                {                  
-                    return SearchElement(current.RightElement, value,out outCount);
-                }             
+                if (current.RightElement != null) return _FindElement(current.RightElement, value, out outCount);
             }
             else
             {
-                if (current.LeftElement != null)
-                {                    
-                    return SearchElement(current.LeftElement, value,out outCount);
-                }
+                if (current.LeftElement != null) return _FindElement(current.LeftElement, value, out outCount);
             }
+
             outCount = 0;
-           return false;
+            return false;
         }
     }
 }
-

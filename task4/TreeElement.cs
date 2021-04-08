@@ -8,7 +8,6 @@ namespace task4
     {
         public TreeElement LeftElement { get; set; }
         public TreeElement RightElement { get; set; }
-        public TreeElement ParentElement { get; set; }
 
         public int Value { get; set; }
         public int Count { get; set; }
