@@ -41,17 +41,17 @@
 
         public bool FindElement(int value, out int outCount)
         {
+            if (_firstTreeElement == null)
+            {
+                outCount = 0;
+                return false;
+            }
             return FindElement(_firstTreeElement, value, out outCount);
         }
 
         private bool FindElement(TreeElement current, int value, out int outCount)
         {
-            if (current == null)
-            {
-                outCount = 0;
-                return false;
-            }
-
+            
             if (current.Value == value)
             {
                 outCount = current.Count;
