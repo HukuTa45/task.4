@@ -2,17 +2,17 @@
 {
     public class Tree
     {
-        private TreeElement _firsTreeElement;
+        private TreeElement _firstTreeElement;
 
         public void AddTreeElement(int value)
         {
-            if (_firsTreeElement == null)
-                _firsTreeElement = new TreeElement
+            if (_firstTreeElement == null)
+                _firstTreeElement = new TreeElement
                 {
                     Value = value,
                     Count = 1
                 };
-            else _AddTreeElement(_firsTreeElement, value);
+            else _AddTreeElement(_firstTreeElement, value);
         }
 
         private void _AddTreeElement(TreeElement current, int value)
@@ -48,7 +48,7 @@
         }
 
         public bool FindElement(int value, out int outCount) 
-            => _FindElement(_firsTreeElement, value, out outCount);
+            => _FindElement(_firstTreeElement, value, out outCount);
         
 
 
